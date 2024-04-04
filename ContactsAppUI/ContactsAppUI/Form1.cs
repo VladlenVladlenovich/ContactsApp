@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ContactsAppUI;
+using ContactsApp;
 
-namespace ContactsAppUI
+namespace ContactsApp
 {
     public partial class Form1 : Form
     {
