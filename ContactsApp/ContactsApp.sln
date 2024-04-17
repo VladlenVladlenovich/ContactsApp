@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApp", "ContactsApp\ContactsApp.csproj", "{856ADA39-FE64-4236-B961-2DF5033EC5CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsAppUI", "ContactsAppUI\ContactsAppUI.csproj", "{9C732607-B26F-4882-B08D-C88489D54033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApp", "ContactsApp\ContactsApp.csproj", "{7306CE0A-2B4D-431D-8FBE-4332DD0CB555}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{856ADA39-FE64-4236-B961-2DF5033EC5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{856ADA39-FE64-4236-B961-2DF5033EC5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{856ADA39-FE64-4236-B961-2DF5033EC5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{856ADA39-FE64-4236-B961-2DF5033EC5CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C732607-B26F-4882-B08D-C88489D54033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C732607-B26F-4882-B08D-C88489D54033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C732607-B26F-4882-B08D-C88489D54033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C732607-B26F-4882-B08D-C88489D54033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7306CE0A-2B4D-431D-8FBE-4332DD0CB555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7306CE0A-2B4D-431D-8FBE-4332DD0CB555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7306CE0A-2B4D-431D-8FBE-4332DD0CB555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7306CE0A-2B4D-431D-8FBE-4332DD0CB555}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {63FA346F-AE15-4CA4-9456-34917BADEB78}
+		SolutionGuid = {9E7F734D-E378-41F6-8D6C-1F9A5F1E460C}
 	EndGlobalSection
 EndGlobal
