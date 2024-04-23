@@ -12,9 +12,9 @@ using ContactsApp;
 
 namespace ContactsAppUI
 {
-    public partial class ContactsApp : Form
+    public partial class MainForm : Form
     {
-        public ContactsApp()
+        public MainForm()
         {
             InitializeComponent();
             
@@ -108,6 +108,16 @@ namespace ContactsAppUI
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }
