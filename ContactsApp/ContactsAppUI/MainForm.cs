@@ -65,6 +65,16 @@ namespace ContactsAppUI
         private void Form1_Load(object sender, EventArgs e)
         {
             
+            c.Surname = SurnameTextbox.Text;
+            c.Name = NameTextbox.Text;
+            c.Birthday = BirthdayTimepicker.;
+          
+            c.Mail = MailTextbox.Text; 
+            //c.IdVk = long.Parse(VkTextbox.Text);
+            Console.WriteLine(c.Surname);
+            phonelist.Add(c);
+            Console.WriteLine(phonelist[0].Surname);
+            ContactsListbox.Items.Add(c.Surname);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
