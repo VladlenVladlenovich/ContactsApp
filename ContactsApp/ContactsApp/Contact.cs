@@ -37,14 +37,17 @@ namespace ContactsApp
             }
             set
             {
-                if (!string.IsNullOrEmpty(_surname) && _surname.Length <= 50)
+                if (string.IsNullOrEmpty(value) || value.Length > 50)
                 {
-                    _surname = char.ToUpper(_surname[0]) + _surname.Substring(1);
-                    _surname = value;
+                    var name = nameof(Surname);
+
+                    throw new ArgumentException($"Длина {name} равна {value.Length}, " +$"а должно быть меньше 50.", name);
+                    
                 }
                 else
                 {
-                    throw new ArgumentException("Некорректные данные");
+                    value = char.ToUpper(value[0]) + value.Substring(1);
+                    _surname = value;
                 }
                 
             }
@@ -61,14 +64,16 @@ namespace ContactsApp
             }
             set
             {
-                if (!string.IsNullOrEmpty(_name) && _name.Length <= 50)
+                if (string.IsNullOrEmpty(value) || value.Length > 50)
                 {
-                    _name = char.ToUpper(_name[0]) + _name.Substring(1);
-                    _name = value;
+                    var name = nameof(Name);
+
+                    throw new ArgumentException($"Длина {name} равна {value.Length}, " +$"а должно быть меньше 50.", name);
                 }
                 else
                 {
-                    throw new ArgumentException("Некорректные данные");
+                    value = char.ToUpper(value[0]) + value.Substring(1);
+                    _name = value;
                 }
                 
             }
@@ -103,13 +108,13 @@ namespace ContactsApp
             }
             set
             {
-                if (_birthday.Year > 1900 && _birthday.Date <= DateTime.Today)
+                if (value.Year < 1900 || value.Date > DateTime.Today)
                 {
-                    _birthday=value;
+                    throw new ArgumentException("Некорректные данные");
                 }
             else
                 {
-                    throw new ArgumentException("Некорректные данные");
+                    _birthday=value;
                 }
                 
             }
@@ -126,13 +131,13 @@ namespace ContactsApp
             }
             set 
             {
-                if (!string.IsNullOrEmpty(_mail) && _mail.Length <= 50)
+                if (string.IsNullOrEmpty(value) || value.Length > 50)
                 {
-                    _mail = value;
+                     throw new ArgumentException("Некорректные данные");
                 }
                 else
                 {
-                    throw new ArgumentException("Некорректные данные");
+                   _mail = value;
                 }
                 
             }
@@ -150,11 +155,9 @@ namespace ContactsApp
             }
             set
             {
-                string ident = _id.ToString();
-
-                if (string.IsNullOrEmpty(ident) && ident.Length > 15)
+                if (value.ToString().Length > 15)
                 {
-                    throw new ArgumentException("Неверный номер");
+                    throw new ArgumentException("Неверный id");
                 }
 
                 else _id = value;

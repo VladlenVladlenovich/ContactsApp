@@ -100,6 +100,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ContactsApp.UnitTests\ContactsApp.UnitTests.csproj">
+      <Project>{f03a8685-03cb-4f8a-bcf0-55ce8850fb4b}</Project>
+      <Name>ContactsApp.UnitTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ContactsApp\ContactsApp.csproj">
       <Project>{7306ce0a-2b4d-431d-8fbe-4332dd0cb555}</Project>
       <Name>ContactsApp</Name>

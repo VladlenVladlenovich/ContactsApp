@@ -31,7 +31,7 @@ namespace ContactsApp
             {
                 {
                     var result = 0;
-                    long temp = _number;
+                    long temp = value;
 
                     while (temp > 0)
                     {
@@ -40,7 +40,7 @@ namespace ContactsApp
 
                     }
 
-                    if (result != 11 || (_number/10000000000)!=7)
+                    if (result != 11 || (value/10000000000)!=7)
                     {
                         throw new ArgumentException("Неверный номер");
                     }

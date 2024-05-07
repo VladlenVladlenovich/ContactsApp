@@ -14,14 +14,20 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ContactsAppUI
 {
+
     public partial class MainForm : Form
     {
         private Project project = new Project();
         private Project temp = new Project();
 
+
         public MainForm()
         {
-            project.PhoneBook = new List<Contact>();
+          
+           
+
+
+            project.Contactslist = new List<Contact>();
 
             temp = ProjectManager.LoadFromFile();
             if (temp != null)
@@ -31,11 +37,11 @@ namespace ContactsAppUI
 
             InitializeComponent();
 
-            if (project.PhoneBook.Count!=0)
+            if (project.Contactslist.Count!=0)
             {
-            for (int i = 0; i < project.PhoneBook.Count; i++)
+            for (int i = 0; i < project.Contactslist.Count; i++)
             {
-                ContactsListbox.Items.Add(project.PhoneBook[i].Surname);
+                ContactsListbox.Items.Add(project.Contactslist[i].Surname);
             }
 
             }
@@ -43,7 +49,7 @@ namespace ContactsAppUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+             
         } 
         
         private void ContactsListbox_MouseClick(object sender, MouseEventArgs e)
@@ -52,7 +58,7 @@ namespace ContactsAppUI
             if (selectedIndex != -1)
             {
                 //индекс в списке, в нашем случае нужен по размеру
-                var selectedData = project.PhoneBook[selectedIndex]; //экземляр списка под выбранном индексом 
+                var selectedData = project.Contactslist[selectedIndex]; //экземляр списка под выбранном индексом 
 
                 NameTextboxMain.Text = selectedData.Name;
                 SurnameTextboxMain.Text = selectedData.Surname;
@@ -74,7 +80,7 @@ namespace ContactsAppUI
 
             var addedData = inner.Contact;
 
-            project.PhoneBook.Add(addedData);
+            project.Contactslist.Add(addedData);
 
             
             var listboxPreview = addedData.Surname;
@@ -88,7 +94,7 @@ namespace ContactsAppUI
             var selectedIndex = ContactsListbox.SelectedIndex; //присваиваем переменной хначение индекса выбранногоконтакта 
             if (selectedIndex != -1) //если пользователь выбрал контакт, то:
             {
-                var selectedData = project.PhoneBook[selectedIndex]; //экземляр списка под выбранном индексом 
+                var selectedData = project.Contactslist[selectedIndex]; //экземляр списка под выбранном индексом 
                 var inner = new EditForm(); //Создаем форму
 
                 inner.Contact = selectedData; //Передаем форме данные
@@ -96,9 +102,9 @@ namespace ContactsAppUI
                 var updatedData = inner.Contact; //Создание экземпляра класса "Contact"
 
                 ContactsListbox.Items.RemoveAt(selectedIndex); //Удаление фамилии из списка формы по выбранному индексу
-                project.PhoneBook.RemoveAt(selectedIndex); //Удаление фамилии из списка по выбранному индексу
+                project.Contactslist.RemoveAt(selectedIndex); //Удаление фамилии из списка по выбранному индексу
 
-                project.PhoneBook.Insert(selectedIndex, updatedData); //Вставляем новую фамилию в список по текущему индексу
+                project.Contactslist.Insert(selectedIndex, updatedData); //Вставляем новую фамилию в список по текущему индексу
                 var listboxPreview = updatedData.Surname; //Присваиваем переменной новое значение фамилии,
                                                                 //если оно было изменено
                 ContactsListbox.Items.Insert(selectedIndex, listboxPreview); //Отоюражаем в списке формы новую фамилию
@@ -119,8 +125,8 @@ namespace ContactsAppUI
             if (selectedIndex != -1)
             {
 
-                var selectedData = project.PhoneBook[selectedIndex]; //экземляр списка под выбранном индексом 
-                project.PhoneBook.Remove(selectedData);
+                var selectedData = project.Contactslist[selectedIndex]; //экземляр списка под выбранном индексом 
+                project.Contactslist.Remove(selectedData);
                 ContactsListbox.Items.RemoveAt(selectedIndex);
                 ProjectManager.SaveToFile(project);
             }
