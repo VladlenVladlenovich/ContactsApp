@@ -17,6 +17,22 @@ namespace ContactsApp
             InitializeComponent();
         }
 
+        private static AboutForm AF;
+
+        public static AboutForm AboutFormList
+        {
+            get
+            {
+                if (AF == null || AF.IsDisposed) AF = new AboutForm();
+                return AF;
+            }
+        }
+        public void ShowForm()
+        {
+            Show();
+            Activate();
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 

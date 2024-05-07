@@ -127,6 +127,8 @@
             this.Controls.Add(this.VersionLabel);
             this.Controls.Add(this.MailLinklabel);
             this.Controls.Add(this.TitleLabel);
+            this.MaximumSize = new System.Drawing.Size(426, 307);
+            this.MinimumSize = new System.Drawing.Size(426, 307);
             this.Name = "AboutForm";
             this.Text = "About";
             this.Load += new System.EventHandler(this.AboutForm_Load);

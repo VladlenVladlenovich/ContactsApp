@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.SurnameTextbox = new System.Windows.Forms.MaskedTextBox();
+            this.SurnameTextboxMain = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.FindTextbox = new System.Windows.Forms.MaskedTextBox();
             this.FindLabel = new System.Windows.Forms.Label();
@@ -38,37 +38,46 @@
             this.FileTollstrip = new System.Windows.Forms.ToolStripDropDownButton();
             this.ExitToolstripmenuitem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditToolstrip = new System.Windows.Forms.ToolStripDropDownButton();
-            this.AddTooltripenutem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddToolstripmenuitem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditTolstripmenuitem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveToolstripmenuitem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolstrip = new System.Windows.Forms.ToolStripDropDownButton();
             this.AboutToolstripmenuIiem = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
-            this.NameTextbox = new System.Windows.Forms.MaskedTextBox();
+            this.NameTextboxMain = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.PhoneTextbox = new System.Windows.Forms.MaskedTextBox();
+            this.PhoneTextboxMain = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.VkTextbox = new System.Windows.Forms.MaskedTextBox();
+            this.VkTextboxMain = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.MailTextbox = new System.Windows.Forms.MaskedTextBox();
-            this.BirthdayTimepicker = new System.Windows.Forms.DateTimePicker();
+            this.MailTextboxMain = new System.Windows.Forms.MaskedTextBox();
+            this.BirthdayTimepickerMain = new System.Windows.Forms.DateTimePicker();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.InputsLayouttable = new System.Windows.Forms.TableLayoutPanel();
+            this.EditPictureBox = new System.Windows.Forms.PictureBox();
+            this.AddPictureBox = new System.Windows.Forms.PictureBox();
+            this.RemovePictureBox = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.InputsLayouttable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // SurnameTextbox
+            // SurnameTextboxMain
             // 
-            this.SurnameTextbox.Location = new System.Drawing.Point(61, 3);
-            this.SurnameTextbox.Name = "SurnameTextbox";
-            this.SurnameTextbox.Size = new System.Drawing.Size(388, 20);
-            this.SurnameTextbox.TabIndex = 1;
+            this.SurnameTextboxMain.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SurnameTextboxMain.Location = new System.Drawing.Point(61, 3);
+            this.SurnameTextboxMain.Name = "SurnameTextboxMain";
+            this.SurnameTextboxMain.ReadOnly = true;
+            this.SurnameTextboxMain.Size = new System.Drawing.Size(388, 20);
+            this.SurnameTextboxMain.TabIndex = 1;
+            this.SurnameTextboxMain.Leave += new System.EventHandler(this.SurnameTextboxMain_Leave);
             // 
             // label1
             // 
@@ -80,7 +89,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Surname:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // FindTextbox
             // 
@@ -88,6 +96,7 @@
             this.FindTextbox.Name = "FindTextbox";
             this.FindTextbox.Size = new System.Drawing.Size(219, 20);
             this.FindTextbox.TabIndex = 3;
+            this.FindTextbox.TextChanged += new System.EventHandler(this.FindTextbox_TextChanged);
             // 
             // FindLabel
             // 
@@ -97,7 +106,6 @@
             this.FindLabel.Size = new System.Drawing.Size(30, 13);
             this.FindLabel.TabIndex = 4;
             this.FindLabel.Text = "Find:";
-            this.FindLabel.Click += new System.EventHandler(this.label2_Click);
             // 
             // ContactsListbox
             // 
@@ -108,7 +116,7 @@
             this.ContactsListbox.Name = "ContactsListbox";
             this.ContactsListbox.Size = new System.Drawing.Size(254, 329);
             this.ContactsListbox.TabIndex = 5;
-            this.ContactsListbox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.ContactsListbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ContactsListbox_MouseClick);
             // 
             // toolStrip1
             // 
@@ -121,7 +129,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(811, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // FileTollstrip
             // 
@@ -130,42 +137,44 @@
             this.FileTollstrip.Name = "FileTollstrip";
             this.FileTollstrip.Size = new System.Drawing.Size(50, 22);
             this.FileTollstrip.Text = "File    ";
-            this.FileTollstrip.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
             // ExitToolstripmenuitem
             // 
             this.ExitToolstripmenuitem.Name = "ExitToolstripmenuitem";
-            this.ExitToolstripmenuitem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolstripmenuitem.Size = new System.Drawing.Size(93, 22);
             this.ExitToolstripmenuitem.Text = "Exit";
+            this.ExitToolstripmenuitem.Click += new System.EventHandler(this.ExitToolstripmenuitem_Click);
             // 
             // EditToolstrip
             // 
             this.EditToolstrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddTooltripenutem,
+            this.AddToolstripmenuitem,
             this.EditTolstripmenuitem,
             this.RemoveToolstripmenuitem});
             this.EditToolstrip.Name = "EditToolstrip";
             this.EditToolstrip.Size = new System.Drawing.Size(52, 22);
             this.EditToolstrip.Text = "Edit    ";
-            this.EditToolstrip.Click += new System.EventHandler(this.toolStripLabel2_Click);
             // 
-            // AddTooltripenutem
+            // AddToolstripmenuitem
             // 
-            this.AddTooltripenutem.Name = "AddTooltripenutem";
-            this.AddTooltripenutem.Size = new System.Drawing.Size(180, 22);
-            this.AddTooltripenutem.Text = "Add contact";
+            this.AddToolstripmenuitem.Name = "AddToolstripmenuitem";
+            this.AddToolstripmenuitem.Size = new System.Drawing.Size(160, 22);
+            this.AddToolstripmenuitem.Text = "Add contact";
+            this.AddToolstripmenuitem.Click += new System.EventHandler(this.AddTooltripenutem_Click);
             // 
             // EditTolstripmenuitem
             // 
             this.EditTolstripmenuitem.Name = "EditTolstripmenuitem";
-            this.EditTolstripmenuitem.Size = new System.Drawing.Size(180, 22);
+            this.EditTolstripmenuitem.Size = new System.Drawing.Size(160, 22);
             this.EditTolstripmenuitem.Text = "Edit contact";
+            this.EditTolstripmenuitem.Click += new System.EventHandler(this.EditTolstripmenuitem_Click);
             // 
             // RemoveToolstripmenuitem
             // 
             this.RemoveToolstripmenuitem.Name = "RemoveToolstripmenuitem";
-            this.RemoveToolstripmenuitem.Size = new System.Drawing.Size(180, 22);
+            this.RemoveToolstripmenuitem.Size = new System.Drawing.Size(160, 22);
             this.RemoveToolstripmenuitem.Text = "Remove contact";
+            this.RemoveToolstripmenuitem.Click += new System.EventHandler(this.RemoveToolstripmenuitem_Click);
             // 
             // HelpToolstrip
             // 
@@ -178,8 +187,9 @@
             // AboutToolstripmenuIiem
             // 
             this.AboutToolstripmenuIiem.Name = "AboutToolstripmenuIiem";
-            this.AboutToolstripmenuIiem.Size = new System.Drawing.Size(180, 22);
+            this.AboutToolstripmenuIiem.Size = new System.Drawing.Size(107, 22);
             this.AboutToolstripmenuIiem.Text = "About";
+            this.AboutToolstripmenuIiem.Click += new System.EventHandler(this.AboutToolstripmenuIiem_Click);
             // 
             // label3
             // 
@@ -191,12 +201,14 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Name:";
             // 
-            // NameTextbox
+            // NameTextboxMain
             // 
-            this.NameTextbox.Location = new System.Drawing.Point(61, 29);
-            this.NameTextbox.Name = "NameTextbox";
-            this.NameTextbox.Size = new System.Drawing.Size(388, 20);
-            this.NameTextbox.TabIndex = 7;
+            this.NameTextboxMain.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.NameTextboxMain.Location = new System.Drawing.Point(61, 29);
+            this.NameTextboxMain.Name = "NameTextboxMain";
+            this.NameTextboxMain.ReadOnly = true;
+            this.NameTextboxMain.Size = new System.Drawing.Size(388, 20);
+            this.NameTextboxMain.TabIndex = 7;
             // 
             // label4
             // 
@@ -217,14 +229,15 @@
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "Phone:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // PhoneTextbox
+            // PhoneTextboxMain
             // 
-            this.PhoneTextbox.Location = new System.Drawing.Point(61, 81);
-            this.PhoneTextbox.Name = "PhoneTextbox";
-            this.PhoneTextbox.Size = new System.Drawing.Size(388, 20);
-            this.PhoneTextbox.TabIndex = 11;
+            this.PhoneTextboxMain.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.PhoneTextboxMain.Location = new System.Drawing.Point(61, 81);
+            this.PhoneTextboxMain.Name = "PhoneTextboxMain";
+            this.PhoneTextboxMain.ReadOnly = true;
+            this.PhoneTextboxMain.Size = new System.Drawing.Size(388, 20);
+            this.PhoneTextboxMain.TabIndex = 11;
             // 
             // label6
             // 
@@ -236,12 +249,14 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "vk.com";
             // 
-            // VkTextbox
+            // VkTextboxMain
             // 
-            this.VkTextbox.Location = new System.Drawing.Point(61, 133);
-            this.VkTextbox.Name = "VkTextbox";
-            this.VkTextbox.Size = new System.Drawing.Size(388, 20);
-            this.VkTextbox.TabIndex = 15;
+            this.VkTextboxMain.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.VkTextboxMain.Location = new System.Drawing.Point(61, 133);
+            this.VkTextboxMain.Name = "VkTextboxMain";
+            this.VkTextboxMain.ReadOnly = true;
+            this.VkTextboxMain.Size = new System.Drawing.Size(388, 20);
+            this.VkTextboxMain.TabIndex = 15;
             // 
             // label7
             // 
@@ -253,19 +268,24 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "E-mail:";
             // 
-            // MailTextbox
+            // MailTextboxMain
             // 
-            this.MailTextbox.Location = new System.Drawing.Point(61, 107);
-            this.MailTextbox.Name = "MailTextbox";
-            this.MailTextbox.Size = new System.Drawing.Size(388, 20);
-            this.MailTextbox.TabIndex = 13;
+            this.MailTextboxMain.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.MailTextboxMain.Location = new System.Drawing.Point(61, 107);
+            this.MailTextboxMain.Name = "MailTextboxMain";
+            this.MailTextboxMain.ReadOnly = true;
+            this.MailTextboxMain.Size = new System.Drawing.Size(388, 20);
+            this.MailTextboxMain.TabIndex = 13;
             // 
-            // BirthdayTimepicker
+            // BirthdayTimepickerMain
             // 
-            this.BirthdayTimepicker.Location = new System.Drawing.Point(61, 55);
-            this.BirthdayTimepicker.Name = "BirthdayTimepicker";
-            this.BirthdayTimepicker.Size = new System.Drawing.Size(155, 20);
-            this.BirthdayTimepicker.TabIndex = 17;
+            this.BirthdayTimepickerMain.CalendarTitleBackColor = System.Drawing.SystemColors.ControlLight;
+            this.BirthdayTimepickerMain.CalendarTrailingForeColor = System.Drawing.Color.Gray;
+            this.BirthdayTimepickerMain.Enabled = false;
+            this.BirthdayTimepickerMain.Location = new System.Drawing.Point(61, 55);
+            this.BirthdayTimepickerMain.Name = "BirthdayTimepickerMain";
+            this.BirthdayTimepickerMain.Size = new System.Drawing.Size(155, 20);
+            this.BirthdayTimepickerMain.TabIndex = 17;
             // 
             // splitContainer
             // 
@@ -293,17 +313,17 @@
             this.InputsLayouttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.InputsLayouttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.InputsLayouttable.Controls.Add(this.label1, 0, 0);
-            this.InputsLayouttable.Controls.Add(this.VkTextbox, 1, 5);
-            this.InputsLayouttable.Controls.Add(this.BirthdayTimepicker, 1, 2);
-            this.InputsLayouttable.Controls.Add(this.MailTextbox, 1, 4);
-            this.InputsLayouttable.Controls.Add(this.PhoneTextbox, 1, 3);
+            this.InputsLayouttable.Controls.Add(this.VkTextboxMain, 1, 5);
+            this.InputsLayouttable.Controls.Add(this.BirthdayTimepickerMain, 1, 2);
+            this.InputsLayouttable.Controls.Add(this.MailTextboxMain, 1, 4);
+            this.InputsLayouttable.Controls.Add(this.PhoneTextboxMain, 1, 3);
             this.InputsLayouttable.Controls.Add(this.label6, 0, 5);
-            this.InputsLayouttable.Controls.Add(this.NameTextbox, 1, 1);
+            this.InputsLayouttable.Controls.Add(this.NameTextboxMain, 1, 1);
             this.InputsLayouttable.Controls.Add(this.label7, 0, 4);
             this.InputsLayouttable.Controls.Add(this.label5, 0, 3);
             this.InputsLayouttable.Controls.Add(this.label4, 0, 2);
-            this.InputsLayouttable.Controls.Add(this.SurnameTextbox, 1, 0);
             this.InputsLayouttable.Controls.Add(this.label3, 0, 1);
+            this.InputsLayouttable.Controls.Add(this.SurnameTextboxMain, 1, 0);
             this.InputsLayouttable.Location = new System.Drawing.Point(25, 17);
             this.InputsLayouttable.MaximumSize = new System.Drawing.Size(600, 153);
             this.InputsLayouttable.Name = "InputsLayouttable";
@@ -317,11 +337,47 @@
             this.InputsLayouttable.Size = new System.Drawing.Size(467, 153);
             this.InputsLayouttable.TabIndex = 19;
             // 
+            // EditPictureBox
+            // 
+            this.EditPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("EditPictureBox.Image")));
+            this.EditPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("EditPictureBox.InitialImage")));
+            this.EditPictureBox.Location = new System.Drawing.Point(56, 459);
+            this.EditPictureBox.Name = "EditPictureBox";
+            this.EditPictureBox.Size = new System.Drawing.Size(21, 17);
+            this.EditPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.EditPictureBox.TabIndex = 37;
+            this.EditPictureBox.TabStop = false;
+            // 
+            // AddPictureBox
+            // 
+            this.AddPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("AddPictureBox.Image")));
+            this.AddPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("AddPictureBox.InitialImage")));
+            this.AddPictureBox.Location = new System.Drawing.Point(80, 447);
+            this.AddPictureBox.Name = "AddPictureBox";
+            this.AddPictureBox.Size = new System.Drawing.Size(36, 40);
+            this.AddPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.AddPictureBox.TabIndex = 36;
+            this.AddPictureBox.TabStop = false;
+            // 
+            // RemovePictureBox
+            // 
+            this.RemovePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("RemovePictureBox.Image")));
+            this.RemovePictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("RemovePictureBox.InitialImage")));
+            this.RemovePictureBox.Location = new System.Drawing.Point(22, 459);
+            this.RemovePictureBox.Name = "RemovePictureBox";
+            this.RemovePictureBox.Size = new System.Drawing.Size(21, 17);
+            this.RemovePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.RemovePictureBox.TabIndex = 35;
+            this.RemovePictureBox.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 488);
+            this.Controls.Add(this.EditPictureBox);
+            this.Controls.Add(this.AddPictureBox);
+            this.Controls.Add(this.RemovePictureBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.splitContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -330,6 +386,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ContactsApp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -340,6 +397,9 @@
             this.splitContainer.ResumeLayout(false);
             this.InputsLayouttable.ResumeLayout(false);
             this.InputsLayouttable.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,32 +407,35 @@
 
         #endregion
 
-        private System.Windows.Forms.MaskedTextBox SurnameTextbox;
+        private System.Windows.Forms.MaskedTextBox SurnameTextboxMain;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox FindTextbox;
         private System.Windows.Forms.Label FindLabel;
         private System.Windows.Forms.ListBox ContactsListbox;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MaskedTextBox NameTextbox;
+        private System.Windows.Forms.MaskedTextBox NameTextboxMain;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox PhoneTextbox;
+        private System.Windows.Forms.MaskedTextBox PhoneTextboxMain;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.MaskedTextBox VkTextbox;
+        private System.Windows.Forms.MaskedTextBox VkTextboxMain;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.MaskedTextBox MailTextbox;
-        private System.Windows.Forms.DateTimePicker BirthdayTimepicker;
+        private System.Windows.Forms.MaskedTextBox MailTextboxMain;
+        private System.Windows.Forms.DateTimePicker BirthdayTimepickerMain;
         private System.Windows.Forms.ToolStripDropDownButton FileTollstrip;
         private System.Windows.Forms.ToolStripMenuItem ExitToolstripmenuitem;
         private System.Windows.Forms.ToolStripDropDownButton EditToolstrip;
-        private System.Windows.Forms.ToolStripMenuItem AddTooltripenutem;
+        private System.Windows.Forms.ToolStripMenuItem AddToolstripmenuitem;
         private System.Windows.Forms.ToolStripMenuItem EditTolstripmenuitem;
         private System.Windows.Forms.ToolStripMenuItem RemoveToolstripmenuitem;
         private System.Windows.Forms.ToolStripDropDownButton HelpToolstrip;
         private System.Windows.Forms.ToolStripMenuItem AboutToolstripmenuIiem;
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.TableLayoutPanel InputsLayouttable;
+        private System.Windows.Forms.PictureBox EditPictureBox;
+        private System.Windows.Forms.PictureBox AddPictureBox;
+        private System.Windows.Forms.PictureBox RemovePictureBox;
     }
 }
 

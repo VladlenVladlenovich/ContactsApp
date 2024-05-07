@@ -8,129 +8,156 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using ContactsApp;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ContactsAppUI
 {
     public partial class MainForm : Form
     {
+        private Project project = new Project();
+        private Project temp = new Project();
+
         public MainForm()
         {
-            InitializeComponent();
-            
-            var contact = new Contact(); //Создание экземпляра класса "Contact"
-            var contact2 = new Contact(); //Создание второго экземпляра класса "Contact");
+            project.PhoneBook = new List<Contact>();
 
-            List <Contact> phoneList = new List <Contact>(); //Создание экземпляра класса "Project"
-
-            
-
-            contact.SetSurname("halls");
-            contact.SetName("ethan");
-            contact.number.SetNumber(79095417077);
-            contact.SetBirthday(new DateTime(1999, 8, 27));
-            contact.SetMail("example@mail.com");
-            contact.SetVk(4545344);
-
-            contact2.SetSurname("green");
-            contact2.SetName("ben");
-           // contact2.number.SetNumber(79039554455);
-            contact2.SetBirthday(new DateTime(1966, 5, 6));
-            contact2.SetMail("fake@yandex.ru");
-            contact2.SetVk(6765344);
-            
-
-            phoneList.Add(contact); //Добавление экземляра "Contact" в список
-            phoneList.Add(contact2); //Добавление экземляра "Contact2" в список
-
-
-            for (int i = 0; i < phoneList.Count; i++) //Цикл для вывода накопленной информации
-                                                      //В списке "phoneList" в случае, если 
-                                                      //Поля класса "Contact" находятся под 
-                                                      //Модификатором "private"
+            temp = ProjectManager.LoadFromFile();
+            if (temp != null)
             {
-                Console.WriteLine(phoneList[i].GetName());
-                Console.WriteLine(phoneList[i].GetSurname());
-                Console.WriteLine(phoneList[i].number.GetNumber());
-                Console.WriteLine(phoneList[i].GetBirthday());
-                Console.WriteLine(phoneList[i].GetMail());
-                Console.WriteLine(phoneList[i].GetVk());
-                Console.WriteLine(" ");
+                project = temp;
             }
 
-            ProjectManager.SaveToFile(phoneList); //Загрузка списка контактов в файл
-            //Console.WriteLine(ProjectManager.LoadFromFile()); //Выгрузка их файла
+            InitializeComponent();
+
+            if (project.PhoneBook.Count!=0)
+            {
+            for (int i = 0; i < project.PhoneBook.Count; i++)
+            {
+                ContactsListbox.Items.Add(project.PhoneBook[i].Surname);
+            }
+
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             
-            c.Surname = SurnameTextbox.Text;
-            c.Name = NameTextbox.Text;
-            c.Birthday = BirthdayTimepicker.;
-          
-            c.Mail = MailTextbox.Text; 
-            //c.IdVk = long.Parse(VkTextbox.Text);
-            Console.WriteLine(c.Surname);
-            phonelist.Add(c);
-            Console.WriteLine(phonelist[0].Surname);
-            ContactsListbox.Items.Add(c.Surname);
+        } 
+        
+        private void ContactsListbox_MouseClick(object sender, MouseEventArgs e)
+        { 
+            var selectedIndex = ContactsListbox.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                //индекс в списке, в нашем случае нужен по размеру
+                var selectedData = project.PhoneBook[selectedIndex]; //экземляр списка под выбранном индексом 
+
+                NameTextboxMain.Text = selectedData.Name;
+                SurnameTextboxMain.Text = selectedData.Surname;
+                PhoneTextboxMain.Text = selectedData.PhoneNumber.Number.ToString();
+                BirthdayTimepickerMain.Value = selectedData.Birthday;
+                MailTextboxMain.Text = selectedData.Mail;
+                VkTextboxMain.Text = selectedData.Id.ToString();
+            }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void AddTooltripenutem_Click(object sender, EventArgs e)
+        {
+            var inner = new EditForm(); //Создаем форму
+
+            inner.Contact = new Contact();
+
+
+            inner.ShowDialog();
+
+            var addedData = inner.Contact;
+
+            project.PhoneBook.Add(addedData);
+
+            
+            var listboxPreview = addedData.Surname;
+
+            ContactsListbox.Items.Add(listboxPreview);
+            ProjectManager.SaveToFile(project);
+        }
+
+       private void EditTolstripmenuitem_Click(object sender, EventArgs e) 
+       { 
+            var selectedIndex = ContactsListbox.SelectedIndex; //присваиваем переменной хначение индекса выбранногоконтакта 
+            if (selectedIndex != -1) //если пользователь выбрал контакт, то:
+            {
+                var selectedData = project.PhoneBook[selectedIndex]; //экземляр списка под выбранном индексом 
+                var inner = new EditForm(); //Создаем форму
+
+                inner.Contact = selectedData; //Передаем форме данные
+                inner.ShowDialog(); //Отображаем форму для редактирования
+                var updatedData = inner.Contact; //Создание экземпляра класса "Contact"
+
+                ContactsListbox.Items.RemoveAt(selectedIndex); //Удаление фамилии из списка формы по выбранному индексу
+                project.PhoneBook.RemoveAt(selectedIndex); //Удаление фамилии из списка по выбранному индексу
+
+                project.PhoneBook.Insert(selectedIndex, updatedData); //Вставляем новую фамилию в список по текущему индексу
+                var listboxPreview = updatedData.Surname; //Присваиваем переменной новое значение фамилии,
+                                                                //если оно было изменено
+                ContactsListbox.Items.Insert(selectedIndex, listboxPreview); //Отоюражаем в списке формы новую фамилию
+                ProjectManager.SaveToFile(project); //Активируем сериализацию в файл
+            }
+
+            else //если пользователь не выбрал контакт, то выводим соответсвующий MessageBox
+            {
+                MessageBox.Show("Choose the item below", "Choose item", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
+
+        private void RemoveToolstripmenuitem_Click(object sender, EventArgs e)
+        {
+            var selectedIndex = ContactsListbox.SelectedIndex; //индекс в списке, в нашем случае нужен по размеру
+            if (selectedIndex != -1)
+            {
+
+                var selectedData = project.PhoneBook[selectedIndex]; //экземляр списка под выбранном индексом 
+                project.PhoneBook.Remove(selectedData);
+                ContactsListbox.Items.RemoveAt(selectedIndex);
+                ProjectManager.SaveToFile(project);
+            }
+
+            else
+            {
+                MessageBox.Show("Choose the item below", "Choose item", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
+        private void ExitToolstripmenuitem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+            e.Cancel = MessageBox.Show("Вы хотите закрыть программу?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes;
+
+        }
+
+        private void AboutToolstripmenuIiem_Click(object sender, EventArgs e)
+        {
+            AboutForm.AboutFormList.ShowForm();
+        }
+
+       private void FindTextbox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        private void SurnameTextboxMain_Leave(object sender, EventArgs e)
         {
-
+            
         }
+    }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripLabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-    } 
-    
 }

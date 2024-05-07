@@ -12,6 +12,6 @@ namespace ContactsApp
     /// </summary>
     public class Project
     {
-        public List <object> PhoneList;
+        public List<Contact> PhoneBook;
     }
 }

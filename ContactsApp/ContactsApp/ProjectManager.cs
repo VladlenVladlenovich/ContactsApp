@@ -14,37 +14,31 @@ namespace ContactsApp
     /// </summary>
     public class ProjectManager
     {
-        public static void SaveToFile(object data)
+        public static void SaveToFile(Project project)
         { 
             JsonSerializer serializer = new JsonSerializer();
             using (StreamWriter sw = new StreamWriter(@"C:\Users\Владимир\Desktop\note.txt"))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                //Вызываем сериализацию и передаем объект, который хотим сериализовать
-               serializer.Serialize(writer, data);
+                //Вызываем сериализацию и c объект, который хотим сериализовать
+               serializer.Serialize(writer, project);
             }
         }
 
 
-        public static object LoadFromFile()
+        public static Project LoadFromFile()
 
         { 
-            Contact temp = null;
+            Project project = null;
             JsonSerializer serializer = new JsonSerializer();
             
             using (StreamReader sr = new StreamReader(@"C:\Users\Владимир\Desktop\note.txt"))
-            using (JsonReader reader = new JsonTextReader(sr))
-            {
-                temp = (Contact)serializer.Deserialize<Contact>(reader);
-                Console.WriteLine($"Surname: {temp.Surname}");
-                Console.WriteLine($"Name: {temp.Name}");
-                Console.WriteLine($"PhoneNumber: {temp.number.Number}");
-                Console.WriteLine($"Surname: {temp.Birthday}");
-                Console.WriteLine($"E-mail: {temp.Mail}");
-                Console.WriteLine($"ID ВКонтакте: {temp.IdVk}");
-            }
+            using (JsonReader reader = new JsonTextReader(sr)) 
+                
+                project = (Project)serializer.Deserialize<Project>(reader);
 
-            return 0;
+
+            return project;
         }
 
        
