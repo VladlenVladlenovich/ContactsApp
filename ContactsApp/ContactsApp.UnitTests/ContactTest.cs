@@ -13,6 +13,10 @@ namespace ContactsApp.UnitTests
     [TestFixture]
     public class ContactTest
     {
+        /// <summary>
+        /// Создание переменной и метода для создания экземпляра класса Contact 
+        /// для предотвращения дублирования кода
+        /// </summary>
         private Contact _contact;
         [SetUp]
         public void InitContact()
@@ -20,22 +24,25 @@ namespace ContactsApp.UnitTests
             _contact = new Contact();
         }
 
-
-        //Тест свойства Surname
+        /// <summary>
+        /// Тестирование свойства Surname
+        /// </summary>
         [Test(Description = "Позитивный тест геттера Surname")]
         public void TestSurnameGet_CorrectValue()
         {
-            var expected = "Смирнов";
-            _contact.Surname = expected;
-            var actual = _contact.Surname;
+            var expected = "Смирнов"; //ожидаемое значение переменной expected
+            _contact.Surname = expected; //кладем в Surname значение expected
+            var actual = _contact.Surname; //в actual помещаем значение Surname
             ClassicAssert.AreEqual(expected, actual, "Геттер Surname возвращает неправильную фамилию");
+            //метод сравнивающий присвоенное и полученное значение из свойства Surname
         }
 
-        [TestCase("", "Должно возникать исключение, если фамилия - пустая строка",TestName = "Присвоение пустой строки в качестве фамилии")]
-        [TestCase("Смирнов-Смирнов-Смирнов-Смирнов-Смирнов-Смирнов-Смирнов", "Должно возникать исключение, если фамилия длиннее 50 символов", TestName = "Присвоение неправильной фамилии больше 50 символов")]
+        [TestCase("", "Должно возникать исключение, если фамилия - пустая строка", TestName = "Присвоение пустой строки в качестве фамилии")]
+        [TestCase("Смирнов-Смирнов-Смирнов-Смирнов-Смирнов-Смирнов-Смирнов", "Должно возникать исключение, если фамилия длиннее 50 символов",
+            TestName = "Присвоение неправильной фамилии больше 50 символов")]
         public void TestSurnameSet_ArgumentException(string wrongSurname, string message)
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<ArgumentException>(//метод, выбрасывающий исключение в случае провала негативного теста
             () => { _contact.Surname = wrongSurname; },
             message);
         }

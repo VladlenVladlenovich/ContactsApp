@@ -64,7 +64,6 @@
             this.BirthdayTimepicker.Size = new System.Drawing.Size(155, 20);
             this.BirthdayTimepicker.TabIndex = 29;
             this.BirthdayTimepicker.Value = new System.DateTime(2024, 4, 24, 0, 0, 0, 0);
-            this.BirthdayTimepicker.ValueChanged += new System.EventHandler(this.BirthdayTimepicker_ValueChanged);
             // 
             // label6
             // 
@@ -81,7 +80,6 @@
             this.VkTextbox.Name = "VkTextbox";
             this.VkTextbox.Size = new System.Drawing.Size(388, 20);
             this.VkTextbox.TabIndex = 27;
-            this.VkTextbox.TextChanged += new System.EventHandler(this.VkTextbox_TextChanged);
             this.VkTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VkTextbox_KeyPress);
             this.VkTextbox.Leave += new System.EventHandler(this.VkTextbox_Leave);
             // 
@@ -100,7 +98,6 @@
             this.MailTextbox.Name = "MailTextbox";
             this.MailTextbox.Size = new System.Drawing.Size(388, 20);
             this.MailTextbox.TabIndex = 25;
-            this.MailTextbox.TextChanged += new System.EventHandler(this.MailTextbox_TextChanged);
             this.MailTextbox.Leave += new System.EventHandler(this.MailTextbox_Leave);
             // 
             // label5
@@ -118,7 +115,6 @@
             this.PhoneTextbox.Name = "PhoneTextbox";
             this.PhoneTextbox.Size = new System.Drawing.Size(388, 20);
             this.PhoneTextbox.TabIndex = 23;
-            this.PhoneTextbox.TextChanged += new System.EventHandler(this.PhoneTextbox_TextChanged);
             this.PhoneTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PhoneTextbox_KeyPress);
             this.PhoneTextbox.Leave += new System.EventHandler(this.PhoneTextbox_Leave);
             // 
@@ -146,7 +142,6 @@
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.Size = new System.Drawing.Size(388, 20);
             this.NameTextbox.TabIndex = 20;
-            this.NameTextbox.TextChanged += new System.EventHandler(this.NameTextbox_TextChanged);
             this.NameTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextbox_KeyPress);
             this.NameTextbox.Leave += new System.EventHandler(this.NameTextbox_Leave);
             // 
@@ -165,7 +160,6 @@
             this.SurnameTextbox.Name = "SurnameTextbox";
             this.SurnameTextbox.Size = new System.Drawing.Size(388, 20);
             this.SurnameTextbox.TabIndex = 18;
-            this.SurnameTextbox.TextChanged += new System.EventHandler(this.SurnameTextbox_TextChanged);
             this.SurnameTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SurnameTextbox_KeyPress);
             this.SurnameTextbox.Leave += new System.EventHandler(this.SurnameTextbox_Leave);
             // 
@@ -270,19 +264,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker BirthdayTimepicker;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.MaskedTextBox VkTextbox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.MaskedTextBox MailTextbox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox PhoneTextbox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MaskedTextBox NameTextbox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox SurnameTextbox;
         private System.Windows.Forms.Button ButtonOk;
         private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Panel EditPanel;
@@ -290,5 +277,11 @@
         private System.Windows.Forms.PictureBox AddPictureBox;
         private System.Windows.Forms.PictureBox RemovePictureBox;
         private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.MaskedTextBox SurnameTextbox;
+        public System.Windows.Forms.MaskedTextBox NameTextbox;
+        public System.Windows.Forms.DateTimePicker BirthdayTimepicker;
+        public System.Windows.Forms.MaskedTextBox VkTextbox;
+        public System.Windows.Forms.MaskedTextBox MailTextbox;
+        public System.Windows.Forms.MaskedTextBox PhoneTextbox;
     }
 }

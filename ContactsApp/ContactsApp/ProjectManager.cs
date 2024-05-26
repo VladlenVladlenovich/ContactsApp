@@ -40,12 +40,5 @@ namespace ContactsApp
 
             return project;
         }
-
-       
-    } 
-    
-    
-       
-       
-        
+    }   
 }

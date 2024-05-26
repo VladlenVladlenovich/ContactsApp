@@ -21,7 +21,6 @@ namespace ContactsApp
         private Contact phonelist;
         private int check = 0; //Переменная для проверки заполненности всех полей в форме
         
-
         public Contact Contact //Свойство для заполнения экземпляра класса Contact
         {
             get { return phonelist; }
@@ -44,17 +43,9 @@ namespace ContactsApp
         public EditForm()
         {
             InitializeComponent();
-        
-    }
-
-
-
-
-        private void SurnameTextbox_TextChanged(object sender, EventArgs e)
-        {
-            phonelist.Surname = SurnameTextbox.Text; //При изменении информации Textbox перехаписываем данные
-           
         }
+
+       
         private void SurnameTextbox_KeyPress(object sender, KeyPressEventArgs e) //Событие набора текста
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar)) // Проверяем, что введенный символ не является числом
@@ -75,19 +66,11 @@ namespace ContactsApp
             else
             {
                 SurnameTextbox.BackColor = Color.White;
-                phonelist.Surname = SurnameTextbox.Text;
-                phonelist.Surname = char.ToUpper(phonelist.Surname[0]) + 
-                                    phonelist.Surname.Substring(1); //Переводим первый символ в верхний регистр
-                
+              
                 check = 1;//Меняем значение проверочной переменной
             }
         }
 
-
-        private void NameTextbox_TextChanged(object sender, EventArgs e)
-        {
-            phonelist.Name = NameTextbox.Text;
-        }
 
         private void NameTextbox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -109,26 +92,9 @@ namespace ContactsApp
             else
             {
                 NameTextbox.BackColor = Color.White;
-                
-                phonelist.Name = NameTextbox.Text;
-                phonelist.Name = char.ToUpper(phonelist.Name[0]) + phonelist.Name.Substring(1);
+
                 check = 1;
             }
-        }
-
-
-
-        private void BirthdayTimepicker_ValueChanged(object sender, EventArgs e)
-        {
-            phonelist.Birthday = BirthdayTimepicker.Value;
-        }
-
-
-        private void PhoneTextbox_TextChanged(object sender, EventArgs e)
-        {
-            long ValueNum;
-            long.TryParse(PhoneTextbox.Text, out ValueNum); 
-            phonelist.PhoneNumber.Number = ValueNum;
         }
 
         private void PhoneTextbox_KeyPress(object sender, KeyPressEventArgs e)
@@ -141,8 +107,7 @@ namespace ContactsApp
 
         private void PhoneTextbox_Leave(object sender, EventArgs e)
         {
-            long ValueNum;
-            long.TryParse(PhoneTextbox.Text, out ValueNum);
+        
 
             if (string.IsNullOrEmpty(PhoneTextbox.Text) || PhoneTextbox.Text[0]!='7' || PhoneTextbox.Text.Length != 11)
             {
@@ -154,18 +119,11 @@ namespace ContactsApp
             else
             {
                 PhoneTextbox.BackColor = Color.White;
-                phonelist.PhoneNumber.Number = ValueNum;
                 check = 1;
             }
         }
 
 
-        private void MailTextbox_TextChanged(object sender, EventArgs e)
-        {
-            phonelist.Mail = MailTextbox.Text;
-
-        } 
-        
         private void MailTextbox_Leave(object sender, EventArgs e)
         {
             if (MailTextbox.Text.Length > 50 || string.IsNullOrEmpty(MailTextbox.Text))
@@ -178,22 +136,11 @@ namespace ContactsApp
             else
             {
                 MailTextbox.BackColor = Color.White;
-                phonelist.Mail = MailTextbox.Text;
                 check = 1;
             }
         }
 
 
-
-
-
-        private void VkTextbox_TextChanged(object sender, EventArgs e)
-        {
-            int ValueVk;
-            int.TryParse(VkTextbox.Text, out ValueVk);
-
-            phonelist.Id = ValueVk;
-        }
 
         private void VkTextbox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -206,9 +153,7 @@ namespace ContactsApp
         
         private void VkTextbox_Leave(object sender, EventArgs e)
         {
-            int ValueVk;
-            int.TryParse(VkTextbox.Text, out ValueVk);
-
+ 
             if (VkTextbox.Text.Length > 15 || string.IsNullOrEmpty(VkTextbox.Text))
             {
                 VkTextbox.BackColor = Color.IndianRed;
@@ -219,40 +164,44 @@ namespace ContactsApp
             else
             {
                 VkTextbox.BackColor = Color.White;
-                phonelist.Id = ValueVk;
                 check = 1;
             }
         }
+        //
 
-
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void EditForm_Load(object sender, EventArgs e)
-        {
-  
-        }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            phonelist.Surname = null;
             DialogResult = DialogResult.Cancel;
-            this.Hide();
-            
+            this.Hide(); 
         }
 
         private void OKbutton_Click(object sender, EventArgs e)
         {
             if (check == 1)
-            {
+            {   
+                long ValueNum;
+                long.TryParse(PhoneTextbox.Text, out ValueNum);
+     
+                int ValueVk;
+                int.TryParse(VkTextbox.Text, out ValueVk);
+                phonelist.Surname = SurnameTextbox.Text;
+                phonelist.Name = NameTextbox.Text;
+                phonelist.PhoneNumber.Number = ValueNum;
+                phonelist.Mail = MailTextbox.Text;
+                phonelist.Birthday = BirthdayTimepicker.Value; 
+                phonelist.Id = ValueVk;
+                
+               
                 DialogResult = DialogResult.OK;
                 this.Close();
             }
             else MessageBox.Show("Check fields", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void EditForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -54,6 +54,8 @@
             this.MailTextboxMain = new System.Windows.Forms.MaskedTextBox();
             this.BirthdayTimepickerMain = new System.Windows.Forms.DateTimePicker();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.BirthdayLabel = new System.Windows.Forms.Label();
+            this.BirthdayListbox = new System.Windows.Forms.ListBox();
             this.InputsLayouttable = new System.Windows.Forms.TableLayoutPanel();
             this.EditPictureBox = new System.Windows.Forms.PictureBox();
             this.AddPictureBox = new System.Windows.Forms.PictureBox();
@@ -77,7 +79,6 @@
             this.SurnameTextboxMain.ReadOnly = true;
             this.SurnameTextboxMain.Size = new System.Drawing.Size(388, 20);
             this.SurnameTextboxMain.TabIndex = 1;
-            this.SurnameTextboxMain.Leave += new System.EventHandler(this.SurnameTextboxMain_Leave);
             // 
             // label1
             // 
@@ -96,7 +97,7 @@
             this.FindTextbox.Name = "FindTextbox";
             this.FindTextbox.Size = new System.Drawing.Size(219, 20);
             this.FindTextbox.TabIndex = 3;
-            this.FindTextbox.TextChanged += new System.EventHandler(this.FindTextbox_TextChanged);
+            this.FindTextbox.TextChanged += new System.EventHandler(this.FindTextbox_TextChanged);          
             // 
             // FindLabel
             // 
@@ -302,10 +303,29 @@
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.Controls.Add(this.BirthdayLabel);
+            this.splitContainer.Panel2.Controls.Add(this.BirthdayListbox);
             this.splitContainer.Panel2.Controls.Add(this.InputsLayouttable);
             this.splitContainer.Size = new System.Drawing.Size(766, 403);
             this.splitContainer.SplitterDistance = 254;
             this.splitContainer.TabIndex = 18;
+            // 
+            // BirthdayLabel
+            // 
+            this.BirthdayLabel.AutoSize = true;
+            this.BirthdayLabel.Location = new System.Drawing.Point(28, 291);
+            this.BirthdayLabel.Name = "BirthdayLabel";
+            this.BirthdayLabel.Size = new System.Drawing.Size(92, 13);
+            this.BirthdayLabel.TabIndex = 21;
+            this.BirthdayLabel.Text = "Today\'s birthdays:";
+            // 
+            // BirthdayListbox
+            // 
+            this.BirthdayListbox.FormattingEnabled = true;
+            this.BirthdayListbox.Location = new System.Drawing.Point(31, 307);
+            this.BirthdayListbox.Name = "BirthdayListbox";
+            this.BirthdayListbox.Size = new System.Drawing.Size(475, 95);
+            this.BirthdayListbox.TabIndex = 20;
             // 
             // InputsLayouttable
             // 
@@ -393,6 +413,7 @@
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel1.PerformLayout();
             this.splitContainer.Panel2.ResumeLayout(false);
+            this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             this.InputsLayouttable.ResumeLayout(false);
@@ -436,6 +457,8 @@
         private System.Windows.Forms.PictureBox EditPictureBox;
         private System.Windows.Forms.PictureBox AddPictureBox;
         private System.Windows.Forms.PictureBox RemovePictureBox;
+        private System.Windows.Forms.ListBox BirthdayListbox;
+        private System.Windows.Forms.Label BirthdayLabel;
     }
 }
 
