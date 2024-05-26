@@ -49,8 +49,7 @@ namespace ContactsApp
                         _number = value;
                     }
                     
-                }
-                
+                }        
             }
         }
     }

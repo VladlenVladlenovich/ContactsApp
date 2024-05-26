@@ -167,8 +167,7 @@ namespace ContactsApp
                 check = 1;
             }
         }
-        //
-
+       
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {

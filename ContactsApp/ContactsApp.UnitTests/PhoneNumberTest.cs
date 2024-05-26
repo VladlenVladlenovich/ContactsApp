@@ -33,8 +33,5 @@ namespace ContactsApp.UnitTests
             () => { phonenumber.Number = wrongNumber; },
             message);
         }
-
-       
-
     }
 }

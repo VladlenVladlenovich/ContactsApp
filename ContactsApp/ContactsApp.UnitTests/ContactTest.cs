@@ -9,7 +9,6 @@ using NUnit.Framework.Legacy;
 
 namespace ContactsApp.UnitTests
 {
-
     [TestFixture]
     public class ContactTest
     {
@@ -47,6 +46,7 @@ namespace ContactsApp.UnitTests
             message);
         }
 
+
         //Тест свойства Name
         [Test(Description = "Позитивный тест геттера Name")]
         public void TestNameGet_CorrectValue()
@@ -64,7 +64,6 @@ namespace ContactsApp.UnitTests
             () => { _contact.Name = wrongName; },
             message);
         }
-
 
 
         //Тест свойства PhoneNumber
@@ -93,10 +92,8 @@ namespace ContactsApp.UnitTests
         }
 
 
-
-
-            //Тест свойства Birthday
-            [Test(Description = "Позитивный тест геттера Birthday")]
+        //Тест свойства Birthday
+        [Test(Description = "Позитивный тест геттера Birthday")]
         public void TestBirthdayGet_CorrectValue()
         {
             var expected = DateTime.Today;
